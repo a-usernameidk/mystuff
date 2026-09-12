@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>a-usernameidk — stuff</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0F1720;
+    --panel:#16212C;
+    --line:#26384A;
+    --text:#E4ECF1;
+    --dim:#7C93A6;
+    --accent:#FFB454;
+    --accent-dim:#C98A3E;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  }
+
+  body{
+    margin:0;
+    background:
+      linear-gradient(var(--bg), var(--bg)),
+      repeating-linear-gradient(0deg, var(--line) 0px, var(--line) 1px, transparent 1px, transparent 48px),
+      repeating-linear-gradient(90deg, var(--line) 0px, var(--line) 1px, transparent 1px, transparent 48px);
+    background-blend-mode:normal;
+    background-attachment:fixed;
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:radial-gradient(ellipse at 20% 0%, rgba(255,180,84,0.06), transparent 55%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  a{ color:inherit; }
+
+  ::selection{ background:var(--accent); color:#10151C; }
+
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:0 28px;
+    position:relative;
+    z-index:1;
+  }
+
+  /* ---------- hero ---------- */
+
+  .hero{
+    padding:96px 0 72px;
+    position:relative;
+  }
+
+  .viewport{
+    position:relative;
+    padding:36px 32px;
+  }
+
+  .viewport::before,
+  .viewport::after,
+  .viewport .corner-tr,
+  .viewport .corner-br{
+    content:"";
+    position:absolute;
+    width:18px;
+    height:18px;
+    border:1.5px solid var(--accent-dim);
+  }
+  .viewport::before{ top:0; left:0; border-right:none; border-bottom:none; }
+  .viewport::after{ bottom:0; left:0; border-right:none; border-top:none; }
+  .viewport .corner-tr{ top:0; right:0; border-left:none; border-bottom:none; }
+  .viewport .corner-br{ bottom:0; right:0; border-left:none; border-top:none; }
+
+  .tag{
+    font-family:'Space Mono', monospace;
+    font-size:12.5px;
+    color:var(--dim);
+    letter-spacing:0.02em;
+    margin:0 0 18px;
+  }
+
+  .tag .dot{
+    display:inline-block;
+    width:6px; height:6px;
+    border-radius:50%;
+    background:var(--accent);
+    margin-right:9px;
+    box-shadow:0 0 8px var(--accent);
+  }
+
+  h1{
+    font-family:'Space Mono', monospace;
+    font-weight:700;
+    font-size:clamp(32px, 6vw, 50px);
+    line-height:1.15;
+    margin:0 0 20px;
+    letter-spacing:-0.01em;
+  }
+
+  h1 span{
+    color:var(--accent);
+  }
+
+  .lede{
+    font-size:16.5px;
+    color:var(--dim);
+    max-width:52ch;
+    margin:0;
+  }
+
+  nav.jump{
+    margin-top:34px;
+    display:flex;
+    gap:22px;
+    font-family:'Space Mono', monospace;
+    font-size:13px;
+  }
+
+  nav.jump a{
+    text-decoration:none;
+    color:var(--text);
+    border-bottom:1px solid var(--line);
+    padding-bottom:2px;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  nav.jump a:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+
+  /* ---------- featured ---------- */
+
+  .featured{
+    margin-bottom:44px;
+  }
+
+  .featured .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:11.5px;
+    color:var(--accent-dim);
+    letter-spacing:0.03em;
+    margin:0 0 14px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+
+  .featured .eyebrow::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+
+  .featured-card{
+    position:relative;
+    padding:28px 30px;
+    background:var(--panel);
+    border:1px solid var(--line);
+  }
+
+  .featured-card::before,
+  .featured-card::after{
+    content:"";
+    position:absolute;
+    width:16px;
+    height:16px;
+    border:1.5px solid var(--accent);
+  }
+  .featured-card::before{ top:-1px; left:-1px; border-right:none; border-bottom:none; }
+  .featured-card::after{ bottom:-1px; right:-1px; border-left:none; border-top:none; }
+
+  .featured-card h3{
+    font-family:'Space Mono', monospace;
+    font-size:22px;
+    margin:0 0 10px;
+  }
+
+  .featured-card h3 a{
+    text-decoration:none;
+  }
+  .featured-card h3 a:hover{ color:var(--accent); }
+
+  .featured-card p{
+    margin:0 0 16px;
+    color:var(--dim);
+    font-size:14.5px;
+    max-width:58ch;
+  }
+
+  .featured-card .meta{
+    margin-bottom:18px;
+  }
+
+  .featured-card .links{
+    flex-direction:row;
+    align-items:center;
+    gap:20px;
+  }
+
+  /* ---------- projects ---------- */
+
+  section.projects{
+    padding:20px 0 100px;
+  }
+
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    border-bottom:1px solid var(--line);
+    padding-bottom:14px;
+    margin-bottom:20px;
+  }
+
+  .section-head h2{
+    font-family:'Space Mono', monospace;
+    font-size:18px;
+    font-weight:700;
+    margin:0;
+  }
+
+  .section-head .count{
+    font-family:'Space Mono', monospace;
+    font-size:12.5px;
+    color:var(--dim);
+  }
+
+  /* controls */
+
+  .controls{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:22px;
+  }
+
+  .search-wrap{
+    position:relative;
+    flex:1 1 220px;
+  }
+
+  .search-wrap input{
+    width:100%;
+    background:var(--panel);
+    border:1px solid var(--line);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    font-size:13.5px;
+    padding:10px 12px 10px 30px;
+    outline:none;
+    transition:border-color .15s ease;
+  }
+  .search-wrap input::placeholder{ color:var(--dim); }
+  .search-wrap input:focus{ border-color:var(--accent-dim); }
+
+  .search-wrap svg{
+    position:absolute;
+    left:10px;
+    top:50%;
+    transform:translateY(-50%);
+    width:14px;
+    height:14px;
+    stroke:var(--dim);
+    pointer-events:none;
+  }
+
+  select.ctl{
+    background:var(--panel);
+    border:1px solid var(--line);
+    color:var(--text);
+    font-family:'Space Mono', monospace;
+    font-size:12.5px;
+    padding:10px 12px;
+    outline:none;
+    cursor:pointer;
+    transition:border-color .15s ease;
+  }
+  select.ctl:focus{ border-color:var(--accent-dim); }
+
+  /* skeleton loading */
+
+  .skeleton-item{
+    display:grid;
+    grid-template-columns:34px 1fr auto;
+    gap:18px;
+    padding:20px 0;
+    border-bottom:1px solid var(--line);
+  }
+
+  .skel-bar{
+    background:linear-gradient(90deg, var(--panel) 0%, var(--line) 50%, var(--panel) 100%);
+    background-size:200% 100%;
+    animation:shimmer 1.6s ease-in-out infinite;
+  }
+
+  @keyframes shimmer{
+    0%{ background-position:200% 0; }
+    100%{ background-position:-200% 0; }
+  }
+
+  .skel-idx{ width:20px; height:13px; }
+  .skel-title{ width:45%; height:16px; margin-bottom:10px; }
+  .skel-desc{ width:75%; height:12px; margin-bottom:10px; }
+  .skel-meta{ width:30%; height:10px; }
+  .skel-links{ width:70px; height:10px; align-self:start; justify-self:end; }
+
+  .status-row{
+    padding:22px 0;
+    color:var(--dim);
+    font-size:14px;
+    font-family:'Space Mono', monospace;
+  }
+
+  .status-row.error{ color:#E88A6B; }
+
+  ul.list{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+
+  li.item{
+    padding:20px 0;
+    border-bottom:1px solid var(--line);
+    opacity:0;
+    animation:rise .35s ease forwards;
+  }
+
+  @keyframes rise{
+    from{ opacity:0; transform:translateY(6px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  li.item .row{
+    display:grid;
+    grid-template-columns:34px 1fr auto;
+    gap:18px;
+    align-items:start;
+  }
+
+  li.item .idx{
+    font-family:'Space Mono', monospace;
+    font-size:13px;
+    color:var(--accent-dim);
+    padding-top:3px;
+  }
+
+  li.item .body h3{
+    margin:0 0 6px;
+    font-size:16.5px;
+    font-weight:600;
+  }
+
+  li.item .body h3 a{
+    text-decoration:none;
+  }
+  li.item .body h3 a:hover{
+    color:var(--accent);
+  }
+
+  li.item .body p{
+    margin:0 0 10px;
+    font-size:14px;
+    color:var(--dim);
+    max-width:56ch;
+  }
+
+  .meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    font-family:'Space Mono', monospace;
+    font-size:11.5px;
+    color:var(--dim);
+  }
+
+  .meta .lang::before{
+    content:"";
+    display:inline-block;
+    width:7px; height:7px;
+    border-radius:50%;
+    background:var(--accent);
+    margin-right:6px;
+    vertical-align:1px;
+  }
+
+  .links{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    align-items:flex-end;
+    white-space:nowrap;
+  }
+
+  .links a{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    text-decoration:none;
+    color:var(--dim);
+    border-bottom:1px solid transparent;
+    transition:color .15s ease, border-color .15s ease;
+  }
+
+  .links a:hover{
+    color:var(--accent);
+    border-color:var(--accent);
+  }
+
+  .links button.releases-btn{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    color:var(--dim);
+    border-bottom:1px solid transparent;
+    cursor:pointer;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  .links button.releases-btn:hover,
+  .links button.releases-btn[aria-expanded="true"]{
+    color:var(--accent);
+    border-color:var(--accent);
+  }
+
+  /* ---------- releases panel ---------- */
+
+  .panel{
+    display:none;
+    margin:16px 0 0 52px;
+    padding:16px 18px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-left:2px solid var(--accent-dim);
+  }
+  .panel.open{ display:block; }
+
+  .panel .panel-status{
+    font-family:'Space Mono', monospace;
+    font-size:12.5px;
+    color:var(--dim);
+  }
+
+  ul.releases{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+
+  li.release{
+    padding:12px 0;
+    border-bottom:1px solid var(--line);
+  }
+  li.release:last-child{ border-bottom:none; }
+
+  li.release .rel-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+
+  li.release .rel-name{
+    font-size:14.5px;
+    font-weight:600;
+  }
+
+  li.release .rel-tag{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    color:var(--accent-dim);
+    border:1px solid var(--line);
+    padding:2px 7px;
+    margin-left:8px;
+  }
+
+  li.release .rel-date{
+    font-family:'Space Mono', monospace;
+    font-size:11.5px;
+    color:var(--dim);
+    white-space:nowrap;
+  }
+
+  .rel-assets{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-top:8px;
+  }
+
+  .rel-assets a{
+    font-family:'Space Mono', monospace;
+    font-size:11.5px;
+    text-decoration:none;
+    color:var(--dim);
+    border-bottom:1px solid var(--line);
+  }
+  .rel-assets a:hover{
+    color:var(--accent);
+    border-color:var(--accent);
+  }
+
+  .empty-state{
+    padding:40px 0;
+    text-align:left;
+    border-bottom:1px solid var(--line);
+  }
+
+  .empty-state .glyph{
+    font-family:'Space Mono', monospace;
+    font-size:22px;
+    color:var(--accent-dim);
+    margin-bottom:10px;
+  }
+
+  .empty-state p{
+    margin:0;
+    color:var(--dim);
+    font-size:14px;
+  }
+
+  .empty-state button{
+    margin-top:12px;
+    background:none;
+    border:1px solid var(--line);
+    color:var(--text);
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    padding:8px 14px;
+    cursor:pointer;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .empty-state button:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+
+  @media (max-width:520px){
+    li.item .row{
+      grid-template-columns:24px 1fr;
+    }
+    .links{
+      grid-column:2 / -1;
+      flex-direction:row;
+      align-items:flex-start;
+      gap:16px;
+      margin-top:6px;
+      flex-wrap:wrap;
+    }
+    .panel{
+      margin-left:0;
+    }
+    .skeleton-item{
+      grid-template-columns:24px 1fr;
+    }
+    .skel-links{ display:none; }
+    .featured-card .links{
+      flex-wrap:wrap;
+    }
+  }
+
+  /* ---------- activity ---------- */
+
+  section.activity{
+    padding:20px 0 60px;
+  }
+
+  .activity-graph{
+    display:grid;
+    grid-auto-flow:column;
+    grid-template-rows:repeat(7, 1fr);
+    gap:4px;
+    overflow-x:auto;
+    padding:18px 0 10px;
+  }
+
+  .activity-graph .cell{
+    width:11px;
+    height:11px;
+    background:var(--panel);
+    border:1px solid var(--line);
+  }
+
+  .activity-graph .cell[data-level="1"]{ background:rgba(255,180,84,0.25); border-color:rgba(255,180,84,0.25); }
+  .activity-graph .cell[data-level="2"]{ background:rgba(255,180,84,0.5); border-color:rgba(255,180,84,0.5); }
+  .activity-graph .cell[data-level="3"]{ background:rgba(255,180,84,0.75); border-color:rgba(255,180,84,0.75); }
+  .activity-graph .cell[data-level="4"]{ background:var(--accent); border-color:var(--accent); }
+
+  .activity-legend{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    color:var(--dim);
+    margin-top:4px;
+  }
+  .activity-legend .cell{
+    width:11px; height:11px;
+    background:var(--panel);
+    border:1px solid var(--line);
+  }
+  .activity-legend .cell[data-level="1"]{ background:rgba(255,180,84,0.25); border-color:rgba(255,180,84,0.25); }
+  .activity-legend .cell[data-level="2"]{ background:rgba(255,180,84,0.5); border-color:rgba(255,180,84,0.5); }
+  .activity-legend .cell[data-level="3"]{ background:rgba(255,180,84,0.75); border-color:rgba(255,180,84,0.75); }
+  .activity-legend .cell[data-level="4"]{ background:var(--accent); border-color:var(--accent); }
+
+  footer{
+    padding:36px 0 64px;
+    border-top:1px solid var(--line);
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    color:var(--dim);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
+  footer .note{
+    color:var(--dim);
+  }
+
+  footer .note .accent{
+    color:var(--accent-dim);
+  }
+</style>
+</head>
+<body>
+
+  <div class="wrap">
+
+    <div class="hero">
+      <div class="viewport">
+        <span class="corner-tr"></span><span class="corner-br"></span>
+        <p class="tag"><span class="dot"></span>github.com/a-usernameidk</p>
+        <h1>a-usernameidk <span>— stuff</span></h1>
+        <p class="lede">Python projects I've built, taken from my repositorys.</p>
+        <nav class="jump">
+          <a href="#projects">Projects</a>
+          <a href="#activity">Activity</a>
+          <a href="about.html">About</a>
+          <a href="prints.html">Prints</a>
+          <a href="https://github.com/a-usernameidk" target="_blank" rel="noopener">GitHub profile ↗</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="featured" id="featured-wrap" style="display:none;">
+      <p class="eyebrow">featured</p>
+      <div class="featured-card" id="featured-card"></div>
+    </div>
+
+    <section class="projects" id="projects">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <span class="count" id="repo-count"></span>
+      </div>
+
+      <div class="controls" id="controls" style="display:none;">
+        <div class="search-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="search-input" placeholder="search projects…">
+        </div>
+        <select class="ctl" id="lang-select">
+          <option value="all">All languages</option>
+        </select>
+        <select class="ctl" id="sort-select">
+          <option value="updated">Recently updated</option>
+          <option value="name">Name (A–Z)</option>
+          <option value="stars">Most stars</option>
+        </select>
+      </div>
+
+      <div id="skeleton"></div>
+      <div class="status-row" id="status">loading repos…</div>
+      <ul class="list" id="repo-list"></ul>
+    </section>
+
+    <section class="activity" id="activity">
+      <div class="section-head">
+        <h2>Activity</h2>
+        <span class="count" id="activity-range"></span>
+      </div>
+      <div id="activity-status" class="status-row">loading activity…</div>
+      <div id="activity-graph" class="activity-graph" style="display:none;"></div>
+      <p style="font-family:'Space Mono', monospace; font-size:11px; color:var(--dim); margin:4px 0 0;">*based on recent public GitHub events, not full history</p>
+    </section>
+
+    <footer>
+      <span class="note">Built with GitHub Pages.</span>
+      <span class="note"><a href="prints.html" style="color:var(--dim); text-decoration:none; border-bottom:1px solid var(--line);">Request a print ↗</a></span>
+    </footer>
+
+  </div>
+
+<script>
+  const USERNAME = "a-usernameidk";
+  const HIDDEN_REPOS = ["a-usernameidk-website", "a-usernameidk"];
+  // set this to a repo name to force it as featured, or leave null to auto-pick
+  const FEATURED_REPO_NAME = null;
+
+  const statusEl = document.getElementById("status");
+  const skeletonEl = document.getElementById("skeleton");
+  const listEl = document.getElementById("repo-list");
+  const countEl = document.getElementById("repo-count");
+  const controlsEl = document.getElementById("controls");
+  const searchInput = document.getElementById("search-input");
+  const langSelect = document.getElementById("lang-select");
+  const sortSelect = document.getElementById("sort-select");
+  const featuredWrap = document.getElementById("featured-wrap");
+  const featuredCard = document.getElementById("featured-card");
+
+  let allRepos = [];
+  let featuredRepo = null;
+
+  function timeAgo(dateStr){
+    const diff = Date.now() - new Date(dateStr).getTime();
+    const days = Math.floor(diff / 86400000);
+    if(days < 1) return "today";
+    if(days === 1) return "1 day ago";
+    if(days < 30) return days + " days ago";
+    const months = Math.floor(days / 30);
+    if(months < 12) return months + (months === 1 ? " month ago" : " months ago");
+    const years = Math.floor(months / 12);
+    return years + (years === 1 ? " year ago" : " years ago");
+  }
+
+  function renderSkeleton(count){
+    skeletonEl.innerHTML = "";
+    for(let i = 0; i < count; i++){
+      const row = document.createElement("div");
+      row.className = "skeleton-item";
+      row.innerHTML = `
+        <div class="skel-bar skel-idx"></div>
+        <div>
+          <div class="skel-bar skel-title"></div>
+          <div class="skel-bar skel-desc"></div>
+          <div class="skel-bar skel-meta"></div>
+        </div>
+        <div class="skel-bar skel-links"></div>
+      `;
+      skeletonEl.appendChild(row);
+    }
+  }
+
+  function buildLinks(repo){
+    const links = document.createElement("div");
+    links.className = "links";
+
+    const viewLink = document.createElement("a");
+    viewLink.href = repo.html_url;
+    viewLink.target = "_blank";
+    viewLink.rel = "noopener";
+    viewLink.textContent = "go to repository";
+
+    const zipLink = document.createElement("a");
+    zipLink.href = `https://github.com/${USERNAME}/${repo.name}/archive/refs/heads/${repo.default_branch}.zip`;
+    zipLink.textContent = "download zip";
+
+    const releasesBtn = document.createElement("button");
+    releasesBtn.className = "releases-btn";
+    releasesBtn.type = "button";
+    releasesBtn.textContent = "releases ▾";
+    releasesBtn.setAttribute("aria-expanded", "false");
+
+    links.appendChild(viewLink);
+    links.appendChild(releasesBtn);
+    links.appendChild(zipLink);
+
+    return { links, releasesBtn };
+  }
+
+  function buildMeta(repo){
+    const meta = document.createElement("div");
+    meta.className = "meta";
+    if(repo.language){
+      const lang = document.createElement("span");
+      lang.className = "lang";
+      lang.textContent = repo.language;
+      meta.appendChild(lang);
+    }
+    const updated = document.createElement("span");
+    updated.textContent = "updated " + timeAgo(repo.pushed_at);
+    meta.appendChild(updated);
+
+    if(repo.stargazers_count > 0){
+      const stars = document.createElement("span");
+      stars.textContent = "★ " + repo.stargazers_count;
+      meta.appendChild(stars);
+    }
+    return meta;
+  }
+
+  async function loadReleases(repo, panel){
+    panel.dataset.loaded = "true";
+    panel.innerHTML = `<div class="panel-status">loading releases…</div>`;
+
+    try{
+      const res = await fetch(`https://api.github.com/repos/${USERNAME}/${repo.name}/releases`);
+      if(!res.ok) throw new Error("GitHub API returned " + res.status);
+      const releases = await res.json();
+
+      if(releases.length === 0){
+        panel.innerHTML = `<div class="panel-status">no releases published for this repo.</div>`;
+        return;
+      }
+
+      const ul = document.createElement("ul");
+      ul.className = "releases";
+
+      releases.forEach(rel => {
+        const li = document.createElement("li");
+        li.className = "release";
+
+        const head = document.createElement("div");
+        head.className = "rel-head";
+
+        const nameWrap = document.createElement("div");
+        const name = document.createElement("span");
+        name.className = "rel-name";
+        name.textContent = rel.name || rel.tag_name;
+        const tag = document.createElement("span");
+        tag.className = "rel-tag";
+        tag.textContent = rel.tag_name;
+        nameWrap.appendChild(name);
+        nameWrap.appendChild(tag);
+
+        const date = document.createElement("span");
+        date.className = "rel-date";
+        date.textContent = timeAgo(rel.published_at);
+
+        head.appendChild(nameWrap);
+        head.appendChild(date);
+        li.appendChild(head);
+
+        const assets = document.createElement("div");
+        assets.className = "rel-assets";
+
+        const srcZip = document.createElement("a");
+        srcZip.href = rel.zipball_url;
+        srcZip.textContent = "source (zip)";
+        assets.appendChild(srcZip);
+
+        rel.assets.forEach(asset => {
+          const a = document.createElement("a");
+          a.href = asset.browser_download_url;
+          a.textContent = asset.name;
+          assets.appendChild(a);
+        });
+
+        li.appendChild(assets);
+        ul.appendChild(li);
+      });
+
+      panel.innerHTML = "";
+      panel.appendChild(ul);
+
+    }catch(err){
+      panel.innerHTML = `<div class="panel-status">couldn't load releases (${err.message}).</div>`;
+    }
+  }
+
+  function attachReleasesToggle(repo, releasesBtn, panel){
+    releasesBtn.addEventListener("click", () => {
+      const isOpen = panel.classList.toggle("open");
+      releasesBtn.setAttribute("aria-expanded", String(isOpen));
+      releasesBtn.textContent = isOpen ? "releases ▴" : "releases ▾";
+      if(isOpen && panel.dataset.loaded === "false"){
+        loadReleases(repo, panel);
+      }
+    });
+  }
+
+  function renderFeatured(repo){
+    if(!repo){
+      featuredWrap.style.display = "none";
+      return;
+    }
+    featuredWrap.style.display = "block";
+    featuredCard.innerHTML = "";
+
+    const h3 = document.createElement("h3");
+    const link = document.createElement("a");
+    link.href = repo.html_url;
+    link.target = "_blank";
+    link.rel = "noopener";
+    link.textContent = repo.name;
+    h3.appendChild(link);
+
+    const p = document.createElement("p");
+    p.textContent = repo.description || "No description yet.";
+
+    const meta = buildMeta(repo);
+    const { links, releasesBtn } = buildLinks(repo);
+
+    const panel = document.createElement("div");
+    panel.className = "panel";
+    panel.dataset.loaded = "false";
+    panel.style.marginLeft = "0";
+    attachReleasesToggle(repo, releasesBtn, panel);
+
+    featuredCard.appendChild(h3);
+    featuredCard.appendChild(p);
+    featuredCard.appendChild(meta);
+    featuredCard.appendChild(links);
+    featuredCard.appendChild(panel);
+  }
+
+  function populateLangOptions(repos){
+    const langs = [...new Set(repos.map(r => r.language).filter(Boolean))].sort();
+    langs.forEach(lang => {
+      const opt = document.createElement("option");
+      opt.value = lang;
+      opt.textContent = lang;
+      langSelect.appendChild(opt);
+    });
+  }
+
+  function getFilteredSorted(){
+    const term = searchInput.value.trim().toLowerCase();
+    const lang = langSelect.value;
+    const sort = sortSelect.value;
+
+    let pool = allRepos.filter(r => !featuredRepo || r.id !== featuredRepo.id);
+
+    if(term){
+      pool = pool.filter(r =>
+        r.name.toLowerCase().includes(term) ||
+        (r.description || "").toLowerCase().includes(term)
+      );
+    }
+    if(lang !== "all"){
+      pool = pool.filter(r => r.language === lang);
+    }
+
+    pool = [...pool];
+    if(sort === "name"){
+      pool.sort((a, b) => a.name.localeCompare(b.name));
+    }else if(sort === "stars"){
+      pool.sort((a, b) => b.stargazers_count - a.stargazers_count);
+    }else{
+      pool.sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
+    }
+
+    return pool;
+  }
+
+  function renderList(){
+    const pool = getFilteredSorted();
+    listEl.innerHTML = "";
+    countEl.textContent = allRepos.length + (allRepos.length === 1 ? " repo" : " repos");
+
+    if(pool.length === 0){
+      const empty = document.createElement("div");
+      empty.className = "empty-state";
+      empty.innerHTML = `
+        <div class="glyph">∅</div>
+        <p>nothing matches that search.</p>
+        <button type="button" id="clear-filters">clear filters</button>
+      `;
+      listEl.appendChild(empty);
+      document.getElementById("clear-filters").addEventListener("click", () => {
+        searchInput.value = "";
+        langSelect.value = "all";
+        sortSelect.value = "updated";
+        renderList();
+      });
+      return;
+    }
+
+    pool.forEach((repo, i) => {
+      const li = document.createElement("li");
+      li.className = "item";
+      li.style.animationDelay = (i * 30) + "ms";
+
+      const row = document.createElement("div");
+      row.className = "row";
+
+      const idx = document.createElement("div");
+      idx.className = "idx";
+      idx.textContent = String(i + 1).padStart(2, "0");
+
+      const body = document.createElement("div");
+      body.className = "body";
+
+      const h3 = document.createElement("h3");
+      const nameLink = document.createElement("a");
+      nameLink.href = repo.html_url;
+      nameLink.target = "_blank";
+      nameLink.rel = "noopener";
+      nameLink.textContent = repo.name;
+      h3.appendChild(nameLink);
+
+      const p = document.createElement("p");
+      p.textContent = repo.description || "No description yet.";
+
+      const meta = buildMeta(repo);
+
+      body.appendChild(h3);
+      body.appendChild(p);
+      body.appendChild(meta);
+
+      const { links, releasesBtn } = buildLinks(repo);
+
+      row.appendChild(idx);
+      row.appendChild(body);
+      row.appendChild(links);
+
+      const panel = document.createElement("div");
+      panel.className = "panel";
+      panel.dataset.loaded = "false";
+      attachReleasesToggle(repo, releasesBtn, panel);
+
+      li.appendChild(row);
+      li.appendChild(panel);
+      listEl.appendChild(li);
+    });
+  }
+
+  function pickFeatured(repos){
+    if(FEATURED_REPO_NAME){
+      const forced = repos.find(r => r.name === FEATURED_REPO_NAME);
+      if(forced) return forced;
+    }
+    const mostStarred = [...repos].sort((a, b) => b.stargazers_count - a.stargazers_count)[0];
+    if(mostStarred && mostStarred.stargazers_count > 0) return mostStarred;
+    return repos[0] || null;
+  }
+
+  async function loadRepos(){
+    renderSkeleton(4);
+    try{
+      const res = await fetch(`https://api.github.com/users/${USERNAME}/repos?sort=updated&per_page=100`);
+      if(!res.ok) throw new Error("GitHub API returned " + res.status);
+      const repos = await res.json();
+
+      const visible = repos.filter(r => !r.fork && !HIDDEN_REPOS.includes(r.name));
+
+      skeletonEl.innerHTML = "";
+      statusEl.remove();
+
+      if(visible.length === 0){
+        const empty = document.createElement("div");
+        empty.className = "empty-state";
+        empty.innerHTML = `<div class="glyph">∅</div><p>no public repos yet — check back soon.</p>`;
+        listEl.appendChild(empty);
+        return;
+      }
+
+      allRepos = visible;
+      featuredRepo = pickFeatured(visible);
+
+      renderFeatured(featuredRepo);
+      populateLangOptions(visible);
+      controlsEl.style.display = "flex";
+
+      searchInput.addEventListener("input", renderList);
+      langSelect.addEventListener("change", renderList);
+      sortSelect.addEventListener("change", renderList);
+
+      renderList();
+
+    }catch(err){
+      skeletonEl.innerHTML = "";
+      statusEl.textContent = "couldn't load repos (" + err.message + "). refresh to try again.";
+      statusEl.classList.add("error");
+    }
+  }
+
+  // ---------- activity heatmap ----------
+  // GitHub's public events API only surfaces roughly the last ~90 events / 30 days,
+  // so this reads as "recent activity", not a full year like github.com's own graph.
+  async function loadActivity(){
+    const statusEl2 = document.getElementById("activity-status");
+    const graphEl = document.getElementById("activity-graph");
+    const rangeEl = document.getElementById("activity-range");
+
+    try{
+      const res = await fetch(`https://api.github.com/users/${USERNAME}/events/public?per_page=100`);
+      if(!res.ok) throw new Error("GitHub API returned " + res.status);
+      const events = await res.json();
+
+      const counts = {};
+      const pushEvents = events.filter(e => e.type === "PushEvent");
+      pushEvents.forEach(e => {
+        const day = e.created_at.slice(0, 10);
+        const n = (e.payload && e.payload.commits) ? e.payload.commits.length : 1;
+        counts[day] = (counts[day] || 0) + n;
+      });
+
+      const DAYS = 84; // 12 weeks
+      const today = new Date();
+      today.setHours(0,0,0,0);
+      const start = new Date(today);
+      start.setDate(start.getDate() - (DAYS - 1));
+      // align start to a Sunday so the grid's weeks line up like GitHub's graph
+      start.setDate(start.getDate() - start.getDay());
+
+      const days = [];
+      let maxCount = 0;
+      for(let d = new Date(start); d <= today; d.setDate(d.getDate() + 1)){
+        const key = d.toISOString().slice(0, 10);
+        const count = counts[key] || 0;
+        maxCount = Math.max(maxCount, count);
+        days.push({ key, count, future: d > today });
+      }
+
+      function levelFor(count){
+        if(count === 0) return 0;
+        if(maxCount <= 1) return count > 0 ? 4 : 0;
+        const ratio = count / maxCount;
+        if(ratio > 0.75) return 4;
+        if(ratio > 0.5) return 3;
+        if(ratio > 0.25) return 2;
+        return 1;
+      }
+
+      graphEl.innerHTML = "";
+      days.forEach(day => {
+        const cell = document.createElement("div");
+        cell.className = "cell";
+        cell.dataset.level = levelFor(day.count);
+        cell.title = `${day.key}: ${day.count} commit${day.count === 1 ? "" : "s"}`;
+        if(day.future) cell.style.visibility = "hidden";
+        graphEl.appendChild(cell);
+      });
+
+      const legend = document.createElement("div");
+      legend.className = "activity-legend";
+      legend.innerHTML = `<span>less</span>` +
+        [0,1,2,3,4].map(l => `<span class="cell" data-level="${l}"></span>`).join("") +
+        `<span>more</span>`;
+      graphEl.after(legend);
+
+      const totalCommits = pushEvents.reduce((sum, e) => sum + ((e.payload && e.payload.commits) ? e.payload.commits.length : 1), 0);
+      rangeEl.textContent = totalCommits + (totalCommits === 1 ? " commit" : " commits") + ", last 12 weeks*";
+
+      statusEl2.remove();
+      graphEl.style.display = "grid";
+
+    }catch(err){
+      statusEl2.textContent = "couldn't load activity (" + err.message + ").";
+      statusEl2.classList.add("error");
+    }
+  }
+
+  loadRepos();
+  loadActivity();
+</script>
+
+</body>
+</html>

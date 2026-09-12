@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — a-usernameidk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0F1720;
+    --panel:#16212C;
+    --line:#26384A;
+    --text:#E4ECF1;
+    --dim:#7C93A6;
+    --accent:#FFB454;
+    --accent-dim:#C98A3E;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+      linear-gradient(var(--bg), var(--bg)),
+      repeating-linear-gradient(0deg, var(--line) 0px, var(--line) 1px, transparent 1px, transparent 48px),
+      repeating-linear-gradient(90deg, var(--line) 0px, var(--line) 1px, transparent 1px, transparent 48px);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    text-align:center;
+    padding:28px;
+  }
+  a{ color:inherit; }
+  ::selection{ background:var(--accent); color:#10151C; }
+
+  .viewport{
+    position:relative;
+    padding:44px 40px;
+    max-width:420px;
+  }
+  .viewport::before, .viewport::after,
+  .viewport .corner-tr, .viewport .corner-br{
+    content:"";
+    position:absolute;
+    width:18px; height:18px;
+    border:1.5px solid var(--accent-dim);
+  }
+  .viewport::before{ top:0; left:0; border-right:none; border-bottom:none; }
+  .viewport::after{ bottom:0; left:0; border-right:none; border-top:none; }
+  .viewport .corner-tr{ top:0; right:0; border-left:none; border-bottom:none; }
+  .viewport .corner-br{ bottom:0; right:0; border-left:none; border-top:none; }
+
+  .code{
+    font-family:'Space Mono', monospace;
+    font-weight:700;
+    font-size:clamp(56px, 14vw, 84px);
+    color:var(--accent);
+    line-height:1;
+    margin:0 0 14px;
+    letter-spacing:-0.02em;
+  }
+
+  .tag{
+    font-family:'Space Mono', monospace;
+    font-size:13px;
+    color:var(--dim);
+    margin:0 0 22px;
+  }
+
+  p.msg{
+    color:var(--dim);
+    font-size:15px;
+    margin:0 0 30px;
+    line-height:1.6;
+  }
+
+  a.home{
+    display:inline-block;
+    font-family:'Space Mono', monospace;
+    font-size:13px;
+    color:var(--accent);
+    text-decoration:none;
+    border:1px solid var(--accent-dim);
+    padding:11px 20px;
+    transition:background .15s ease, color .15s ease;
+  }
+  a.home:hover{ background:var(--accent); color:#10151C; }
+</style>
+</head>
+<body>
+
+  <div class="viewport">
+    <span class="corner-tr"></span><span class="corner-br"></span>
+    <p class="code">404</p>
+    <p class="tag">// no matching part found</p>
+    <p class="msg">This page doesn't exist — wrong link, or it moved. Nothing printed here.</p>
+    <a class="home" href="/mystuff/">back to the shop</a>
+  </div>
+
+</body>
+</html>
